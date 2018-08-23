@@ -1,0 +1,20 @@
+#!/usr/bin/env python3
+import sys
+import os
+import secrets
+
+prefix = os.getenv('HOME') + '/.local/share/words/'
+
+if len(sys.argv) == 2:
+    ct = int(sys.argv[1])
+    wl = 'british'
+elif len(sys.argv) == 3:
+    ct = int(sys.argv[1])
+    wl = sys.argv[2]
+else:
+    print('Invalid arguments')
+    exit(1)
+
+words = [word.strip() for word in open(prefix + wl).readlines()]
+
+print(' '.join([secrets.choice(words) for _ in range(ct)]))
