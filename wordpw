@@ -7,12 +7,12 @@ prefix = os.getenv('HOME') + '/.local/share/words/'
 
 if len(sys.argv) == 2:
     ct = int(sys.argv[1])
-    wl = 'british'
+    wl = 'default'
 elif len(sys.argv) == 3:
     ct = int(sys.argv[1])
     wl = sys.argv[2]
 else:
-    print('Invalid arguments')
+    print(f'Usage: {sys.argv[0]} nwords [wordlist]')
     exit(1)
 
 words = [word.strip() for word in open(prefix + wl).readlines()]
