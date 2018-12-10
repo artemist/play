@@ -12,35 +12,32 @@ main:                                   # @main
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
-	sub	rsp, 80
-	mov	dword ptr [rbp - 56], 0
-	mov	dword ptr [rbp - 52], edi
+	sub	rsp, 64
+	mov	dword ptr [rbp - 40], 0
+	mov	dword ptr [rbp - 36], edi
 	mov	qword ptr [rbp - 64], rsi
+	movabs	rax, -9223372036854775808
+	mov	qword ptr [rbp - 32], rax
 	mov	byte ptr [rbp - 24], 1
-	mov	qword ptr [rbp - 32], -1
+	mov	qword ptr [rbp - 16], rax
 	mov	byte ptr [rbp - 8], 1
-	mov	qword ptr [rbp - 16], -1
 	movzx	eax, byte ptr [rbp - 24]
 	mov	rcx, qword ptr [rbp - 32]
 	movzx	edx, byte ptr [rbp - 8]
 	mov	rsi, qword ptr [rbp - 16]
 	add	rcx, rsi
 	adc	rax, rdx
-	mov	qword ptr [rbp - 48], rcx
-	and	eax, 1
-	mov	byte ptr [rbp - 40], al
-	movzx	edx, byte ptr [rbp - 24]
+	shld	rax, rcx, 63
+	mov	qword ptr [rbp - 56], rax
+	mov	byte ptr [rbp - 48], 0
 	mov	rsi, qword ptr [rbp - 32]
-	movzx	r8d, byte ptr [rbp - 8]
-	mov	rcx, qword ptr [rbp - 16]
-	movzx	eax, byte ptr [rbp - 40]
-	mov	r9, qword ptr [rbp - 48]
-	mov	qword ptr [rsp], rax
-	mov	edi, offset .L.str
-	xor	eax, eax
+	mov	rdx, qword ptr [rbp - 16]
+	mov	rcx, qword ptr [rbp - 56]
+	movabs	rdi, offset .L.str
+	mov	al, 0
 	call	printf
 	xor	eax, eax
-	add	rsp, 80
+	add	rsp, 64
 	pop	rbp
 	.cfi_def_cfa rsp, 8
 	ret
@@ -51,8 +48,8 @@ main:                                   # @main
 	.type	.L.str,@object          # @.str
 	.section	.rodata.str1.1,"aMS",@progbits,1
 .L.str:
-	.asciz	"%lu + %lu = %lu\n"
-	.size	.L.str, 17
+	.asciz	"(%lu + %lu) >> 1 = %lu\n"
+	.size	.L.str, 24
 
 
 	.ident	"clang version 7.0.0 (tags/RELEASE_700/final)"

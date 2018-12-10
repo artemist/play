@@ -3,7 +3,7 @@ source_filename = "i65.c"
 target datalayout = "e-m:e-i64:64-f80:128-n8:16:32:64-S128"
 target triple = "x86_64-pc-linux-gnu"
 
-@.str = private unnamed_addr constant [17 x i8] c"%lu + %lu = %lu\0A\00", align 1
+@.str = private unnamed_addr constant [24 x i8] c"(%lu + %lu) >> 1 = %lu\0A\00", align 1
 
 ; Function Attrs: noinline nounwind optnone sspstrong uwtable
 define dso_local i32 @main(i32, i8**) #0 {
@@ -16,19 +16,20 @@ define dso_local i32 @main(i32, i8**) #0 {
   store i32 0, i32* %3, align 4
   store i32 %0, i32* %4, align 4
   store i8** %1, i8*** %5, align 8
-  store i65 -1, i65* %6, align 8
-  store i65 -1, i65* %7, align 8
+  store i65 -9223372036854775808, i65* %6, align 8
+  store i65 -9223372036854775808, i65* %7, align 8
   %9 = load i65, i65* %6, align 8
   %10 = load i65, i65* %7, align 8
   %11 = add i65 %9, %10
-  store i65 %11, i65* %8, align 8
-  %12 = load i65, i65* %6, align 8
-  %13 = load i65, i65* %7, align 8
-  %14 = load i65, i65* %8, align 8
-  %15 = trunc i65 %12 to i64
+  %12 = lshr i65 %11, 1
+  store i65 %12, i65* %8, align 8
+  %13 = load i65, i65* %6, align 8
+  %14 = load i65, i65* %7, align 8
+  %15 = load i65, i65* %8, align 8
   %16 = trunc i65 %13 to i64
   %17 = trunc i65 %14 to i64
-  %18 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([17 x i8], [17 x i8]* @.str, i32 0, i32 0), i64 %15, i64 %16, i64 %17)
+  %18 = trunc i65 %15 to i64
+  %19 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([24 x i8], [24 x i8]* @.str, i32 0, i32 0), i64 %16, i64 %17, i64 %18)
   ret i32 0
 }
 
