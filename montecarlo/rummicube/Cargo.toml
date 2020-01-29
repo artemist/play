@@ -1,0 +1,7 @@
+[package]
+name = "rummicube"
+version = "0.1.0"
+authors = ["Artemis Tosini <me@artem.ist>"]
+edition = "2018"
+
+[dependencies]
