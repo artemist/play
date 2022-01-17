@@ -1,0 +1,52 @@
+// Compile with
+// gcc -E -nostdinc -I $KERNELSRC -I $KERNELSRC/include -x assembler-with-cpp -o am335x-boneblack-openskies.dts.tmp am335x-boneblack-openskies.dts
+// dtc -I dts -O dtb -@ -i $KERNELSRC -i $KERNELSRC/include -o am335x-boneblack-openskies.dtb am335x-boneblack-openskies.dts.tmp
+
+#include <arch/arm/boot/dts/am335x-boneblack.dts>
+
+/ {
+	aliases {
+		sht3x = &sht3x;
+		ssd1306 = &ssd1306;
+		pms5003 = &pms5003;
+		s8 = &s8;
+	};
+};
+
+&i2c1 {
+	status = "okay";
+	clock-frequency = <400000>;
+	#address-cells = <0x01>;
+	#size-cells = <0x00>;
+	sht3x: sht3x@44 {
+		compatible = "sensirion,sht3x";
+		reg = <0x44>;
+		status = "okay";
+	};
+	ssd1306: ssd1306@3c {
+		compatible = "solomon,ssd1306fb-i2c";
+		reg = <0x3c>;
+		solomon,height = <48>;
+		solomon,width = <64>;
+		status = "okay";
+	};
+
+};
+
+&uart1 {
+	status = "okay";
+	pms5003: pms5003 {
+		compatible = "plantower,pms5003";
+		vcc-supply = <0xffffffff>;
+		status = "okay";
+	};
+};
+
+
+&uart2 {
+	status = "okay";
+	s8: s8 {
+		compatible = "senseair,sunrise-006-0-007";
+		status = "okay";
+	};
+};
