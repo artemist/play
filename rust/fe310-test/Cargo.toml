@@ -1,0 +1,18 @@
+[package]
+name = "fe310-test"
+version = "0.1.0"
+authors = ["Artemis Tosini <me@artem.ist>"]
+edition = "2018"
+
+
+[dependencies]
+embedded-hal = "0.2.3"
+e310x-hal = { version = "0.8.3", features = ["g002"] }
+panic-halt = "0.2.0"
+riscv = "0.5.3"
+riscv-rt = "0.6.0"
+
+[profile.release]
+codegen-units = 1
+debug = true
+lto = true
