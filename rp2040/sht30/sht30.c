@@ -4,7 +4,7 @@
 #include "hardware/i2c.h"
 #include "pico/stdlib.h"
 
-struct scd30_result {
+struct sht30_result {
   float temp_c;
   float relative_humidity;
 };
@@ -37,7 +37,7 @@ static uint8_t crc8(uint8_t msb, uint8_t lsb) {
   return crc8_table[lsb ^ crc8_table[msb ^ 0xff]];
 }
 
-static void scd30_reset_all() {
+static void sht30_reset_all() {
   // Generall call recet
   uint8_t cmd[] = {0x06};
   i2c_write_blocking(i2c, 0x00, cmd, sizeof(cmd), false);
@@ -45,7 +45,7 @@ static void scd30_reset_all() {
   sleep_ms(2);
 }
 
-static uint16_t scd30_get_firmware_version() {
+static uint16_t sht30_get_firmware_version() {
   uint8_t cmd[] = {0xd1, 0x00};
   i2c_write_blocking(i2c, addr, cmd, sizeof(cmd), true);
   uint8_t resp[3];
@@ -55,13 +55,13 @@ static uint16_t scd30_get_firmware_version() {
   return (uint16_t)resp[0] << 8 | resp[1];
 }
 
-static void scd30_start_capture() {
+static void sht30_start_capture() {
   // High repeatability, 1 sample per second
   uint8_t cmd[] = {0x21, 0x30};
   i2c_write_blocking(i2c, addr, cmd, sizeof(cmd), false);
 };
 
-static struct scd30_result scd30_fetch_data() {
+static struct sht30_result sht30_fetch_data() {
   uint8_t cmd[] = {0xe0, 0x00};
   i2c_write_blocking(i2c, addr, cmd, sizeof(cmd), true);
   uint8_t resp[6];
@@ -78,7 +78,7 @@ static struct scd30_result scd30_fetch_data() {
   else
     relative_humidity = NAN;
 
-  struct scd30_result result = {.temp_c = temp_c,
+  struct sht30_result result = {.temp_c = temp_c,
                                 .relative_humidity = relative_humidity};
   return result;
 }
@@ -94,13 +94,13 @@ int main() {
 
   sleep_ms(2000);
 
-  scd30_reset_all();
+  sht30_reset_all();
 
-  scd30_start_capture();
+  sht30_start_capture();
 
   while (true) {
     sleep_ms(1000);
-    struct scd30_result result = scd30_fetch_data();
+    struct sht30_result result = sht30_fetch_data();
     printf("{\"temperature\": %f, \"humidity\": %f}\n", result.temp_c,
            result.relative_humidity);
   }
