@@ -3,6 +3,9 @@
 
 #include "hardware/i2c.h"
 #include "pico/stdlib.h"
+#include "pico/cyw43_arch.h"
+#include "lwip/pbuf.h"
+#include "lwip/tcp.h"
 
 struct sht30_result {
   float temp_c;
@@ -37,7 +40,7 @@ static uint8_t crc8(uint8_t msb, uint8_t lsb) {
   return crc8_table[lsb ^ crc8_table[msb ^ 0xff]];
 }
 
-void sht30_reset_all() {
+static void sht30_reset_all() {
   // Generall call recet
   uint8_t cmd[] = {0x06};
   i2c_write_blocking(i2c, 0x00, cmd, sizeof(cmd), false);
@@ -45,7 +48,7 @@ void sht30_reset_all() {
   sleep_ms(2);
 }
 
-uint16_t sht30_get_firmware_version() {
+static uint16_t sht30_get_firmware_version() {
   uint8_t cmd[] = {0xd1, 0x00};
   i2c_write_blocking(i2c, addr, cmd, sizeof(cmd), true);
   uint8_t resp[3];
@@ -55,13 +58,13 @@ uint16_t sht30_get_firmware_version() {
   return (uint16_t)resp[0] << 8 | resp[1];
 }
 
-void sht30_start_capture() {
+static void sht30_start_capture() {
   // High repeatability, 1 sample per second
   uint8_t cmd[] = {0x21, 0x30};
   i2c_write_blocking(i2c, addr, cmd, sizeof(cmd), false);
 };
 
-struct sht30_result sht30_fetch_data() {
+static struct sht30_result sht30_fetch_data() {
   uint8_t cmd[] = {0xe0, 0x00};
   i2c_write_blocking(i2c, addr, cmd, sizeof(cmd), true);
   uint8_t resp[6];
