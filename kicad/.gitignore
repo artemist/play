@@ -1,0 +1,10 @@
+*-bak
+*-backups
+*.lck
+*~
+*-cache*
+*-bak*
+_autosave*
+production
+gerber_to_order
+board2pdf.config.ini
