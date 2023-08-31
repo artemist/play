@@ -20,23 +20,23 @@ module middle() {
 linear_extrude(height=wall_thickness) {
     common();
     translate([-size / 2, 0])
-        round_rect((wall_thickness+output_thickness)*2,size/2,[1,1,1,1]);
+        round_rect((wall_thickness*3/2+output_thickness)*2,size/2+wall_thickness/2,[1,1,1,1]);
 }
 
 translate([0,0,wall_thickness]) difference() {
-    linear_extrude(height=internal_height) {
-        middle();
-        hull() {
-            translate([-size/2-output_thickness-wall_thickness/2,size/4-wall_thickness/2]) circle(wall_thickness/2);
-            translate([-size/2-output_thickness-wall_thickness/2,-size/4+wall_thickness/2]) circle(wall_thickness/2);
-        }
-    }
+    linear_extrude(height=internal_height) middle();
     translate([0,0,internal_height*1/2]) {
         rotate([0,0,-30]) rotate_extrude(angle=60) square([center_radius-1,1]);
         rotate([0,0,150]) rotate_extrude(angle=60) square([center_radius-1,1]);
 
     }
 }
+
+translate([0,0,wall_thickness]) linear_extrude(height=internal_height+wall_thickness) hull() {
+    translate([-size/2-output_thickness-wall_thickness/2,size/4-wall_thickness/2]) circle(wall_thickness/2);
+    translate([-size/2-output_thickness-wall_thickness/2,-size/4+wall_thickness/2]) circle(wall_thickness/2);
+}
+
 
 translate([0,0,wall_thickness+internal_height]) linear_extrude(height=wall_thickness/2) {
     intersection() {
@@ -47,10 +47,4 @@ translate([0,0,wall_thickness+internal_height]) linear_extrude(height=wall_thick
             
         }
     }
-    hull() {
-        translate([-size/2-output_thickness-wall_thickness/2,size/4-wall_thickness/2]) circle(wall_thickness/4);
-        translate([-size/2-output_thickness-wall_thickness/2,-size/4+wall_thickness/2]) circle(wall_thickness/4);
-    }
-
-
 }
