@@ -2,7 +2,7 @@ wall_thickness = 1.5;
 output_thickness = 1.5;
 internal_height = 26;
 center_radius = 10;
-output_radius = 3;
+output_radius = 1;
 size = 40;
 $fn = 500;
 

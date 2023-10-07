@@ -34,7 +34,7 @@ translate([0,0,wall_thickness]) difference() {
 
 translate([0,0,wall_thickness]) linear_extrude(height=internal_height+wall_thickness) hull() {
     translate([-size/2-output_thickness-wall_thickness/2,size/4-wall_thickness/2]) circle(wall_thickness/2);
-    translate([-size/2-output_thickness-wall_thickness/2,-size/4+wall_thickness/2]) circle(wall_thickness/2);
+    translate([-size/2-output_thickness-wall_thickness/2,-size/4+wall_thickness/2]) mirror([1,0,0]) circle(wall_thickness/2, $fn=3);
 }
 
 
