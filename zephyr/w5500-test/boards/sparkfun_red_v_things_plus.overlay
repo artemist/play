@@ -1,0 +1,10 @@
+&spi1 {
+	cs-gpios = <&gpio0 9 GPIO_ACTIVE_LOW>;
+	
+	w5500@0 {
+		compatible = "wiznet,w5500";
+		reg = <0>;
+		int-gpios = <&gpio0 10 GPIO_ACTIVE_LOW>;
+		spi-max-frequency = <10000000>;
+	};
+};

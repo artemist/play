@@ -10,11 +10,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1699827895,
-        "narHash": "sha256-Fzjd9h3TDPXORNl6pek+e79eFjbmSaU4Hi/MUpjSRz4=",
+        "lastModified": 1699858083,
+        "narHash": "sha256-EXmVoYDYszdWlaxRzedQ3Q7ehbqIGfbe9EaHSBD4cgQ=",
         "ref": "refs/heads/canon",
-        "rev": "763d83f15705ab6c6b033e445f96d40bc4f10eb4",
-        "revCount": 9,
+        "rev": "453af715eebd7102131d2cc6846dd23d49f853ac",
+        "revCount": 12,
         "type": "git",
         "url": "https://git.mildlyfunctional.gay/artemist/packages.git"
       },

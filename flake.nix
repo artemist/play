@@ -19,12 +19,8 @@
                 arm-zephyr-eabi
                 riscv64-zephyr-elf
               ];
-            zephyrSrc = pkgs.fetchFromGitHub {
-              owner = "zephyrproject-rtos";
-              repo = "zephyr";
-              rev = "v3.5.0";
-              hash = "sha256-72QFsKOWkF6BiP4XgZAXXSBcN4t6yvhAeXCpgCYrhe8=";
-            };
+            modules = with artemist-packages.packages.${system}.zephyr.modules;
+              [ mbedtls ];
           };
         formatter = pkgs.nixfmt;
       });
