@@ -20,7 +20,7 @@
                 riscv64-zephyr-elf
               ];
             modules = with artemist-packages.packages.${system}.zephyr.modules;
-              [ mbedtls ];
+              [ mbedtls hal_rpi_pico cmsis ];
           };
         formatter = pkgs.nixfmt;
       });
