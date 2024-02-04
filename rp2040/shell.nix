@@ -11,7 +11,7 @@ in
 mkShell rec {
   name = "pico-env";
 
-  nativeBuildInputs = [ pkgconfig ];
+  nativeBuildInputs = [ pkg-config ];
 
   buildInputs = [
     gnumake

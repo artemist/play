@@ -19,8 +19,14 @@
                 arm-zephyr-eabi
                 riscv64-zephyr-elf
               ];
-            modules = with artemist-packages.packages.${system}.zephyr.modules;
-              [ mbedtls hal_rpi_pico cmsis ];
+            modules =
+              with artemist-packages.packages.${system}.zephyr.modules; [
+                mbedtls
+                hal_rpi_pico
+                hal_atmel
+                cmsis
+              ];
+            extraPackages = with pkgs; [ pyocd ];
           };
         formatter = pkgs.nixfmt;
       });

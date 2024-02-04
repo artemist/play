@@ -1,0 +1,32 @@
+# Atmel SAM3S MCU series configuration options
+
+# Copyright (c) 2017 Justin Watson
+# Copyright (c) 2018 Vincent van der Locht
+# SPDX-License-Identifier: Apache-2.0
+
+if SOC_SERIES_SAM3S
+
+config SOC_SERIES
+	default "sam3s"
+
+config SOC_PART_NUMBER
+	default "sam3s16c" if SOC_PART_NUMBER_SAM3S16C
+	default "sam3sa16c" if SOC_PART_NUMBER_SAM3SA16C
+	default "sam3s16b" if SOC_PART_NUMBER_SAM3S16B
+	default "sam3s8c" if SOC_PART_NUMBER_SAM3S8C
+	default "sam3s8b" if SOC_PART_NUMBER_SAM3S8B
+	default "sam3s4c" if SOC_PART_NUMBER_SAM3S4C
+	default "sam3s4b" if SOC_PART_NUMBER_SAM3S4B
+	default "sam3s4a" if SOC_PART_NUMBER_SAM3S4A
+	default "sam3s2c" if SOC_PART_NUMBER_SAM3S2C
+	default "sam3s2b" if SOC_PART_NUMBER_SAM3S2B
+	default "sam3s2a" if SOC_PART_NUMBER_SAM3S2A
+
+#
+# SAM3S family has total 35 peripherals capable of
+# generating interrupts.
+#
+config NUM_IRQS
+	default 35
+
+endif # SOC_SERIES_SAM3S
