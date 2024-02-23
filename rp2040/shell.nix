@@ -7,8 +7,7 @@ let
     rev = "1.4.0";
     sha256 = "sha256-i3IAaNcd0EfKNvU104a776O1poDAChlx1m+nP8iFn8E=";
   };
-in
-mkShell rec {
+in mkShell rec {
   name = "pico-env";
 
   nativeBuildInputs = [ pkg-config ];

@@ -11,16 +11,16 @@
   outputs = { self, nixpkgs, utils, artemist-packages }:
     utils.lib.eachDefaultSystem (system:
       let pkgs = import nixpkgs { inherit system; };
-      in {
+      in rec {
         devShells.zephyr =
           artemist-packages.devShells.${system}.zephyr.override {
             toolchains =
-              with artemist-packages.packages.${system}.zephyr.toolchains; [
+              with artemist-packages.packages.${system}.zephyrPackages.toolchains; [
                 arm-zephyr-eabi
                 riscv64-zephyr-elf
               ];
             modules =
-              with artemist-packages.packages.${system}.zephyr.modules; [
+              with artemist-packages.packages.${system}.zephyrPackages.modules; [
                 mbedtls
                 hal_rpi_pico
                 hal_atmel
@@ -28,6 +28,11 @@
               ];
             extraPackages = with pkgs; [ pyocd ];
           };
+        devShells.zephyr-west = devShells.zephyr.override {
+          enableWest = true;
+          zephyrSrc = null;
+          modules = [ ];
+        };
         formatter = pkgs.nixfmt;
       });
 

@@ -10,11 +10,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1700363859,
-        "narHash": "sha256-zT0vd5Vhd9dR3bTJpFCwtiBRkjY0+iYhvXVifIQ7vSo=",
+        "lastModified": 1708666625,
+        "narHash": "sha256-m/hGwXHPhUo7s/uUigA7skxg5B33X8LAOrMznE88zXY=",
         "ref": "refs/heads/canon",
-        "rev": "6400d73e5f103f15550beb8bfb0315a98121dfef",
-        "revCount": 13,
+        "rev": "6c29e57677352cb3bd34ef4ef7665f05760bf057",
+        "revCount": 39,
         "type": "git",
         "url": "https://git.mildlyfunctional.gay/artemist/packages.git"
       },
@@ -25,11 +25,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1700786208,
-        "narHash": "sha256-vP0WI7qNkg3teQJN5xjFcxgnBNiKCbkgw3X9HcAxWJY=",
+        "lastModified": 1708564076,
+        "narHash": "sha256-KKkqoxlgx9n3nwST7O2kM8tliDOijiSSNaWuSkiozdQ=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "8b8c9407844599546393146bfac901290e0ab96b",
+        "rev": "98b00b6947a9214381112bdb6f89c25498db4959",
         "type": "github"
       },
       "original": {
@@ -66,11 +66,11 @@
         "systems": "systems"
       },
       "locked": {
-        "lastModified": 1694529238,
-        "narHash": "sha256-zsNZZGTGnMOf9YpHKJqMSsa0dXbfmxeoJ7xHlrt+xmY=",
+        "lastModified": 1705309234,
+        "narHash": "sha256-uNRRNRKmJyCRC/8y1RqBkqWBLM034y4qN7EprSdmgyA=",
         "owner": "numtide",
         "repo": "flake-utils",
-        "rev": "ff7b65b44d01cf9ba6a71320833626af21126384",
+        "rev": "1ef2e671c3b0c19053962c07dbda38332dcebf26",
         "type": "github"
       },
       "original": {
