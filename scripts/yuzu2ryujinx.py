@@ -32,7 +32,7 @@ YUZU_SAVE_DIR = get_yuzu_save_dir()
 titles: typing.Dict[str, Path] = dict()
 
 # The first 8 bytes of ExtraData0 are the program ID, next 16 are user ID.
-# NOTE: if you try to do multiple profiles, ryujinx doesn't seem to update uid in ExtraData1
+# Ignore ExtraData1, that's just for journaling
 # https://github.com/Thealexbarney/LibHac/blob/master/src/LibHac/Fs/Common/SaveDataTypes.cs#L97
 # https://github.com/Thealexbarney/LibHac/blob/master/src/LibHac/Fs/Common/SaveDataTypes.cs#L131
 for child in RYUJINX_SAVE_DIR.iterdir():
