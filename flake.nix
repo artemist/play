@@ -33,6 +33,7 @@
           zephyrSrc = null;
           modules = [ ];
         };
+        devShells.typst = with pkgs; mkShell { packages = [ typst ]; };
         formatter = pkgs.nixfmt;
       });
 
