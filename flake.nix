@@ -57,7 +57,7 @@
           };
         in with pkgs;
         mkShell {
-          packages = [ rust cargo-binutils probe-rs cargo-generate ];
+          packages = [ rust cargo-binutils probe-rs cargo-generate gdb ];
           RUST_SRC_PATH = "${rust}/lib/rustlib/src/rust/library";
         };
 
