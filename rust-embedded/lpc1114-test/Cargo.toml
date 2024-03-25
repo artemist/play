@@ -8,7 +8,7 @@ edition = "2021"
 cortex-m = "0.7"
 cortex-m-rt = "0.7"
 cortex-m-semihosting = "0.5"
-lpc11xx = "0.2"
+lpc111x-pac = { path = "../lpc111x-pac" }
 panic-semihosting = "0.6"
 
 # Set the default for dependencies.

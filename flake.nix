@@ -55,10 +55,31 @@
               "riscv32imac-unknown-none-elf"
             ];
           };
+          rust-form = pkgs.rustPlatform.buildRustPackage rec {
+            pname = "form";
+            version = "0.10.0";
+            src = pkgs.fetchFromGitHub {
+              owner = "djmcgill";
+              repo = pname;
+              rev = "v${version}";
+              hash = "sha256-cqoc2sTtVdhTAQ65oaJKo1+YMfQu7eHCe8zjRPDz9zg=";
+            };
+            cargoHash = "sha256-dhPp93AH4VlOVJWXMMUwv8b53vLPdBY3WyaXE4kcEm4=";
+          };
         in with pkgs;
         mkShell {
-          packages =
-            [ rust cargo-binutils probe-rs cargo-generate gdb openocd ];
+          packages = [
+            cargo-binutils
+            cargo-generate
+            gdb
+            openocd
+            probe-rs
+            rust
+            rust-form
+            svd2rust
+            svdtools
+            
+          ];
           RUST_SRC_PATH = "${rust}/lib/rustlib/src/rust/library";
         };
 
