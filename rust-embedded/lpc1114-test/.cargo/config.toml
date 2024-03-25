@@ -1,5 +1,5 @@
 [target.'cfg(all(target_arch = "arm", target_os = "none"))']
-runner = "probe-rs run --chip Cortex-M0"
+runner = "gdb -x openocd.gdb"
 
 rustflags = [
   "-C", "link-arg=-Tlink.x",
