@@ -1,1 +1,86 @@
 _svd: LPC111x.svd
+
+"CT16B0,CT32B0":
+  CTCR:
+    CTM:
+      _replace_enum:
+        TIMER: [0, "Increment on every rising PCLK edge"]
+        COUNTER_RISING: [1, "Increment on rising CAP pin edge"]
+        COUNTER_FALLING: [2, "Increment on falling CAP pin edge"]
+        COUNTER_BOTH: [3, "Increment on both CAP pin edges"]
+    SELCC:
+      _replace_enum:
+        CAP0_RISING: [0, "Rising Edge of CAP0 clears the timer"]
+        CAP0_FALLING: [1, "Falling Edge of CAP0 clears the timer"]
+        CAP1_RISING: [2, "Rising Edge of CAP1 clears the timer"]
+        CAP1_FALLING: [3, "Falling Edge of CAP1 clears the timer"]
+
+IOCON:
+  _strip:
+    - "IOCON_"
+
+  "PIO0_[45]":
+    I2CMODE:
+      _replace_enum:
+        STANDARD_I2C: [0, "Standard mode/Fast-mode I2C"]
+        STANDARD_IO: [1, "Standard I/O"]
+        FAST_PLUS_I2C: [2, "Fast-mode Plus I2C"]
+
+  SCK0_LOC:
+    SCKLOC:
+      _replace_enum:
+        PI00_10: [0, ""]
+        PI02_11: [1, ""]
+        PI00_6: [2, ""]
+  DSR_LOC:
+    DSRLOC:
+      _replace_enum:
+        PIO2_1: [0, ""]
+        PIO3_1: [1, ""]
+  DCD_LOC:
+    DCDLOC:
+      _replace_enum:
+        PIO2_2: [0, ""]
+        PIO3_2: [1, ""]
+  RI_LOC:
+    RILOC:
+      _replace_enum:
+        PIO2_3: [0, ""]
+        PIO3_3: [1, ""]
+  SSEL1_LOC:
+    SSEL1LOC:
+      _replace_enum:
+        PIO2_2: [0, ""]
+        PIO3_4: [1, ""]
+  CT16B0_CAP0_LOC:
+    CT16B0_CAP0LOC:
+      _replace_enum:
+        PIO0_2: [0, ""]
+        PIO3_3: [1, ""]
+  CT32B0_CAP0_LOC:
+    CT32B0_CAP0LOC:
+      _replace_enum:
+        PIO1_5: [0, ""]
+        PIO2_9: [1, ""]
+  SCK1_LOC:
+    SCK1LOC:
+      _replace_enum:
+        PIO2_1: [0, ""]
+        PIO3_2: [1, ""]
+  MISO1_LOC:
+    MISO1LOC:
+      _replace_enum:
+        PIO2_2: [0, ""]
+        PIO1_10: [1, ""]
+  MOSI1_LOC:
+    MOSI1LOC:
+      _replace_enum:
+        PIO2_3: [0, ""]
+        PIO1_9: [1, ""]
+  RXD_LOC:
+    RXDLOC:
+      _replace_enum:
+        PIO1_6: [0, ""]
+        PIO2_7: [1, ""]
+        PIO3_1: [2, ""]
+        PIO3_4: [3, ""]
